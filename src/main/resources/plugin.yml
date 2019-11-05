@@ -1,0 +1,14 @@
+name: WorldShaper
+version: @version@
+main: net.codedstingray.worldshaper.spigot.WorldShaperSpigot
+api-version: 1.13
+authors: [CodedStingray]
+description: WorldShaper is a map editing plugin designed to empower worldbuilders and terraformers relizing their artistic vision in Minecraft.
+website: worldshaper.codedstingray.net
+commands:
+  wands:
+    description: Gives you all WorldShaper wands
+    usage: /wands
+  wand:
+    description: Gives you the requested WorldShaper Wands
+    usage: /wand [area] [brush]
