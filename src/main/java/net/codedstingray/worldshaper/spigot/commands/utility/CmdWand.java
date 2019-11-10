@@ -47,6 +47,7 @@ public class CmdWand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)) {
+            sender.sendMessage(ChatColor.RED + "This commands can only be used by a player");
             return false;
         }
         Player player = (Player) sender;
@@ -56,6 +57,11 @@ public class CmdWand implements CommandExecutor {
                 giveWands(player, Wand.values());
                 return true;
             case "wand":
+                if(args.length == 0) {
+                    player.sendMessage(ChatColor.RED + "Provide the names of the wands you'd like to request, or use " +
+                            ChatColor.WHITE + "/wands" + ChatColor.RED + " to get all wands");
+                    return false;
+                }
                 giveWands(player, Wand.fromString(args));
                 return true;
         }

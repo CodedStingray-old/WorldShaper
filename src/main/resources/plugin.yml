@@ -10,5 +10,5 @@ commands:
     description: Gives you all WorldShaper wands
     usage: /wands
   wand:
-    description: Gives you the requested WorldShaper Wands
+    description: Gives you the requested WorldShaper wands
     usage: /wand [area] [brush]
