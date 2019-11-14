@@ -12,3 +12,7 @@ commands:
   wand:
     description: Gives you the requested WorldShaper wands
     usage: /wand [area] [brush]
+
+  pos:
+    description: Sets the i'th position to your current position
+    usage: /pos <index>
