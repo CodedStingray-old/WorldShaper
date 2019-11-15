@@ -2,12 +2,14 @@ package net.codedstingray.worldshaper.spigot.commands.area;
 
 import net.codedstingray.worldshaper.core.WorldShaper;
 import net.codedstingray.worldshaper.core.area.Area;
+import net.codedstingray.worldshaper.core.util.vector.Vector3;
+import net.codedstingray.worldshaper.core.util.vector.VectorUtil;
+import net.codedstingray.worldshaper.spigot.util.VectorUtilSpigot;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.util.Vector;
 
 import java.util.UUID;
 
@@ -49,21 +51,17 @@ public class CmdPos implements CommandExecutor {
         if(playerArea == null)
             playerArea = WorldShaper.getInstance().createAreaForPlayer(player.getUniqueId());
 
-        Vector position = player.getLocation().toVector();
+        Vector3 position = VectorUtilSpigot.toImmutableVector(player.getLocation().toVector());
         UUID world = player.getWorld().getUID();
 
         playerArea.setPosition(index, position, world);
 
         player.sendMessage(ChatColor.WHITE + "Position " + ChatColor.AQUA + (index + 1)
-                + ChatColor.WHITE + " set to " + ChatColor.AQUA + vectorBlockToString(position));
+                + ChatColor.WHITE + " set to " + ChatColor.AQUA + VectorUtil.vectorBlockToString(position));
 
         player.sendMessage(ChatColor.DARK_RED + "[DEBUG]" + ChatColor.WHITE + " Actual position at index "
-                + (index + 1) + ": " + vectorBlockToString(playerArea.getPosition(index)));
+                + (index + 1) + ": " + VectorUtil.vectorBlockToString(playerArea.getPosition(index)));
 
         return true;
-    }
-
-    private String vectorBlockToString(Vector vector) {
-        return "[" + vector.getBlockX() + " | " + vector.getBlockY() + " | " + vector.getBlockZ() + "]";
     }
 }

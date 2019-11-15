@@ -1,6 +1,7 @@
 package net.codedstingray.worldshaper.core;
 
 import net.codedstingray.worldshaper.core.area.Area;
+import net.codedstingray.worldshaper.core.area.CuboidArea;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class WorldShaper {
      * @return the created area
      */
     public Area createAreaForPlayer(UUID player) {
-        Area area = new Area();
+        Area area = new CuboidArea(); //TODO change depending on selection type
         playerMappedAreas.putIfAbsent(player, area);
         return area;
     }
