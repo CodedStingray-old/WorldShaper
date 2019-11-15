@@ -20,7 +20,6 @@ public class CmdWand implements CommandExecutor {
     public static final ItemStack wandBrush;
 
     static {
-        //TODO add name and data stuff
         wandArea = new ItemStack(Material.IRON_AXE);
         ItemMeta wandAreaMeta = wandArea.getItemMeta();
         wandAreaMeta.setDisplayName(ChatColor.AQUA + "Area Wand");
@@ -28,14 +27,13 @@ public class CmdWand implements CommandExecutor {
         loreArea.add(ChatColor.WHITE + "The " + ChatColor.AQUA + "Area Wand"
                 + ChatColor.WHITE + " is used to set WorldShaper Areas");
         wandAreaMeta.setLore(loreArea);
-        //wandAreaMeta.setAttributeModifiers();
         wandArea.setItemMeta(wandAreaMeta);
 
         wandBrush = new ItemStack(Material.IRON_SHOVEL);
         ItemMeta wandBrushMeta = wandBrush.getItemMeta();
         wandBrushMeta.setDisplayName(ChatColor.AQUA + "Brush Wand");
         LinkedList<String> loreBrush = new LinkedList<>();
-//        loreBrush.add(ChatColor.DARK_RED + "[NYI] " + ChatColor.WHITE + "The " + ChatColor.AQUA + "Brush Wand"
+//        loreBrush.add(ChatColor.WHITE + "The " + ChatColor.AQUA + "Brush Wand"
 //                + ChatColor.WHITE + " is used to apply the global brush");
         loreBrush.add(ChatColor.DARK_RED + "[NYI] " + ChatColor.RED + "Brushes are not yet implemented");
         wandBrushMeta.setLore(loreBrush);

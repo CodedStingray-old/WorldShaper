@@ -2,6 +2,7 @@ package net.codedstingray.worldshaper.spigot.commands;
 
 import net.codedstingray.worldshaper.spigot.WorldShaperSpigot;
 import net.codedstingray.worldshaper.spigot.commands.area.CmdPos;
+import net.codedstingray.worldshaper.spigot.commands.edits.area.CmdSet;
 import net.codedstingray.worldshaper.spigot.commands.utility.CmdWand;
 
 public class CommandInitializer {
@@ -13,5 +14,8 @@ public class CommandInitializer {
 
         CmdPos cmdPos = new CmdPos();
         plugin.getCommand("pos").setExecutor(cmdPos);
+
+        CmdSet cmdSet = new CmdSet();
+        plugin.getCommand("set").setExecutor(cmdSet);
     }
 }

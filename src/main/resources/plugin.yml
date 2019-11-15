@@ -16,3 +16,7 @@ commands:
   pos:
     description: Sets the i'th position to your current position
     usage: /pos <index>
+
+  set:
+    description: Sets all blocks in the current area to the given pattern
+    usage: /set <pattern>
