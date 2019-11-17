@@ -1,6 +1,7 @@
 package net.codedstingray.worldshaper.spigot.commands.utility;
 
-import org.bukkit.ChatColor;
+import net.codedstingray.worldshaper.core.util.chat.TextColor;
+import net.codedstingray.worldshaper.core.wand.WandData;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -22,20 +23,18 @@ public class CmdWand implements CommandExecutor {
     static {
         wandArea = new ItemStack(Material.IRON_AXE);
         ItemMeta wandAreaMeta = wandArea.getItemMeta();
-        wandAreaMeta.setDisplayName(ChatColor.AQUA + "Area Wand");
+        wandAreaMeta.setDisplayName(WandData.areaWandName);
         LinkedList<String> loreArea = new LinkedList<>();
-        loreArea.add(ChatColor.WHITE + "The " + ChatColor.AQUA + "Area Wand"
-                + ChatColor.WHITE + " is used to set WorldShaper Areas");
+        loreArea.add(WandData.areaWandLore);
         wandAreaMeta.setLore(loreArea);
         wandArea.setItemMeta(wandAreaMeta);
 
         wandBrush = new ItemStack(Material.IRON_SHOVEL);
         ItemMeta wandBrushMeta = wandBrush.getItemMeta();
-        wandBrushMeta.setDisplayName(ChatColor.AQUA + "Brush Wand");
+        wandBrushMeta.setDisplayName(WandData.brushWandName);
         LinkedList<String> loreBrush = new LinkedList<>();
-//        loreBrush.add(ChatColor.WHITE + "The " + ChatColor.AQUA + "Brush Wand"
-//                + ChatColor.WHITE + " is used to apply the global brush");
-        loreBrush.add(ChatColor.DARK_RED + "[NYI] " + ChatColor.RED + "Brushes are not yet implemented");
+//        loreBrush.add(WandData.brushWandLore);
+        loreBrush.add(TextColor.DARK_RED + "[NYI] " + TextColor.RED + "Brushes are not yet implemented");
         wandBrushMeta.setLore(loreBrush);
         wandBrush.setItemMeta(wandBrushMeta);
     }
@@ -45,7 +44,7 @@ public class CmdWand implements CommandExecutor {
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "This commands can only be used by a player");
+            sender.sendMessage(TextColor.RED + "This commands can only be used by a player");
             return false;
         }
         Player player = (Player) sender;
@@ -56,8 +55,8 @@ public class CmdWand implements CommandExecutor {
                 return true;
             case "wand":
                 if(args.length == 0) {
-                    player.sendMessage(ChatColor.RED + "Provide the names of the wands you'd like to request, or use " +
-                            ChatColor.WHITE + "/wands" + ChatColor.RED + " to get all wands");
+                    player.sendMessage(TextColor.RED + "Provide the names of the wands you'd like to request, or use " +
+                            TextColor.WHITE + "/wands" + TextColor.RED + " to get all wands");
                     return false;
                 }
                 giveWands(player, Wand.fromString(args));
