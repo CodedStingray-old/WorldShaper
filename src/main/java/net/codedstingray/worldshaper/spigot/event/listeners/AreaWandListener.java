@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -48,12 +47,10 @@ public class AreaWandListener implements Listener {
             String itemName = itemMeta.getDisplayName();
 
             if(WandData.areaWandName.equals(itemName)) {
-                Area playerArea = WorldShaper.getInstance().getAreaForPlayer(player.getUniqueId());
-                if(playerArea == null)
-                    playerArea = WorldShaper.getInstance().createAreaForPlayer(player.getUniqueId());
-
                 Vector3 position = VectorUtilSpigot.toImmutableVector(clickedBlock.getLocation().toVector());
                 UUID world = player.getWorld().getUID();
+
+                Area playerArea = WorldShaper.getInstance().getAreaForPlayer(player.getUniqueId());
 
                 playerArea.setPosition(index, position, world);
                 player.sendMessage(TextColor.WHITE + "Position " + TextColor.AQUA + (index + 1)

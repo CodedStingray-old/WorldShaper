@@ -25,19 +25,12 @@ public class WorldShaper {
 
     //areas
     public Area getAreaForPlayer(UUID player) {
-        return playerMappedAreas.get(player);
-    }
+        Area ret = playerMappedAreas.get(player);
+        if(ret == null) {
+            playerMappedAreas.put(player, ret = new CuboidArea()); //TODO: change depending on selection type
+        }
 
-    /**
-     * Maps an {@link Area} to the given player.<br>
-     * Will not throw an error if provided with a null value.
-     * @param player the player to create a new area for
-     * @return the created area
-     */
-    public Area createAreaForPlayer(UUID player) {
-        Area area = new CuboidArea(); //TODO change depending on selection type
-        playerMappedAreas.putIfAbsent(player, area);
-        return area;
+        return ret;
     }
 
     //singleton

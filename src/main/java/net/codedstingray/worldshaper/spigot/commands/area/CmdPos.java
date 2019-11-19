@@ -2,10 +2,10 @@ package net.codedstingray.worldshaper.spigot.commands.area;
 
 import net.codedstingray.worldshaper.core.WorldShaper;
 import net.codedstingray.worldshaper.core.area.Area;
+import net.codedstingray.worldshaper.core.util.chat.TextColor;
 import net.codedstingray.worldshaper.core.util.vector.Vector3;
 import net.codedstingray.worldshaper.core.util.vector.VectorUtil;
 import net.codedstingray.worldshaper.spigot.util.VectorUtilSpigot;
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -15,17 +15,17 @@ import java.util.UUID;
 
 public class CmdPos implements CommandExecutor {
 
-    private static final String MSG_INVALID_INDEX = ChatColor.RED + "The index must be a number greater than 0";
+    private static final String MSG_INVALID_INDEX = TextColor.RED + "The index must be a number greater than 0";
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if(!(sender instanceof Player)) {
-            sender.sendMessage(ChatColor.RED + "This command can only be used by players");
+            sender.sendMessage(TextColor.RED + "This command can only be used by players");
             return true;
         }
 
         if(args.length != 1) {
-            sender.sendMessage(ChatColor.RED + "Invalid number of arguments. Command use:");
+            sender.sendMessage(TextColor.RED + "Invalid number of arguments. Command use:");
             return false;
         }
 
@@ -47,20 +47,15 @@ public class CmdPos implements CommandExecutor {
         //TODO: we probably need to outsource this into a method once we implement setting positions via area wand
         Player player = (Player) sender;
 
-        Area playerArea = WorldShaper.getInstance().getAreaForPlayer(player.getUniqueId());
-        if(playerArea == null)
-            playerArea = WorldShaper.getInstance().createAreaForPlayer(player.getUniqueId());
-
         Vector3 position = VectorUtilSpigot.toImmutableVector(player.getLocation().toVector());
         UUID world = player.getWorld().getUID();
 
+        Area playerArea = WorldShaper.getInstance().getAreaForPlayer(player.getUniqueId());
+
         playerArea.setPosition(index, position, world);
 
-        player.sendMessage(ChatColor.WHITE + "Position " + ChatColor.AQUA + (index + 1)
-                + ChatColor.WHITE + " set to " + ChatColor.AQUA + VectorUtil.vectorBlockToString(position));
-
-        player.sendMessage(ChatColor.DARK_RED + "[DEBUG]" + ChatColor.WHITE + " Actual position at index "
-                + (index + 1) + ": " + VectorUtil.vectorBlockToString(playerArea.getPosition(index)));
+        player.sendMessage(TextColor.WHITE + "Position " + TextColor.AQUA + (index + 1)
+                + TextColor.WHITE + " set to " + TextColor.AQUA + VectorUtil.vectorBlockToString(position));
 
         return true;
     }

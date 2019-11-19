@@ -1,9 +1,8 @@
-package net.codedstingray.worldshaper.spigot.commands.edits.area;
+package net.codedstingray.worldshaper.spigot.commands.area.operations;
 
 import net.codedstingray.worldshaper.core.WorldShaper;
 import net.codedstingray.worldshaper.core.area.Area;
 import net.codedstingray.worldshaper.core.util.vector.Vector3;
-import net.codedstingray.worldshaper.core.util.vector.VectorUtil;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
