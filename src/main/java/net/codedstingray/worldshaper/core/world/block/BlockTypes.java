@@ -728,4 +728,8 @@ public class BlockTypes {
     public static final BlockType ZOMBIE_HEAD = BlockType.register("zombie_head");
     public static final BlockType ZOMBIE_WALL_HEAD = BlockType.register("zombie_wall_head");
     //</editor-fold>
+
+    public static void init() {
+        //TODO: log output
+    }
 }
