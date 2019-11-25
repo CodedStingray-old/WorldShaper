@@ -25,6 +25,9 @@ public class BlockType {
     }
 
     public static BlockType getByID(String namespacedID) {
+        if(!namespacedID.contains(":"))
+            namespacedID = NAMESPACE_MINECRAFT + ":" + namespacedID;
+
         return BY_NAMESPACED_ID.get(namespacedID);
     }
 
