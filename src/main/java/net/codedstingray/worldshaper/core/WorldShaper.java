@@ -2,6 +2,7 @@ package net.codedstingray.worldshaper.core;
 
 import net.codedstingray.worldshaper.core.area.Area;
 import net.codedstingray.worldshaper.core.area.CuboidArea;
+import net.codedstingray.worldshaper.core.util.logging.Logger;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import java.util.UUID;
 public class WorldShaper {
 
     private PluginIntegration pluginIntegration;
+    private Logger logger;
 
     private Map<UUID, Area> playerMappedAreas = new HashMap<>();
 
@@ -20,6 +22,13 @@ public class WorldShaper {
     }
 
     public void init() {
+        if(pluginIntegration == null) {
+            throw new IllegalStateException("Unable to initialize; no PluginIntegration provided");
+        }
+        if(logger == null) {
+            throw new IllegalStateException("Unable to initialize; no Logger provided");
+        }
+
         pluginIntegration.initCommands();
     }
 
@@ -31,6 +40,15 @@ public class WorldShaper {
         }
 
         return ret;
+    }
+
+    //logger
+    public void setLogger(Logger logger) {
+        this.logger = logger;
+    }
+
+    public Logger getLogger() {
+        return logger;
     }
 
     //singleton
