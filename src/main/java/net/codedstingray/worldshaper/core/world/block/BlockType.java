@@ -7,7 +7,7 @@ public class BlockType {
 
     public static final String NAMESPACE_MINECRAFT = "minecraft";
 
-    private static Map<String, BlockType> BY_NAMESPACED_ID = new HashMap<>();
+    static Map<String, BlockType> BY_NAMESPACED_ID = new HashMap<>();
 
     public final String namespace;
     public final String id;

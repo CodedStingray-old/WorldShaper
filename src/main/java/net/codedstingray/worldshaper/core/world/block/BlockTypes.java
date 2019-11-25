@@ -1,5 +1,7 @@
 package net.codedstingray.worldshaper.core.world.block;
 
+import net.codedstingray.worldshaper.core.WorldShaper;
+
 /**
  * All vanilla block types accepted by WS commands
  */
@@ -730,6 +732,6 @@ public class BlockTypes {
     //</editor-fold>
 
     public static void init() {
-        //TODO: log output
+        WorldShaper.getInstance().getLogger().info(BlockType.BY_NAMESPACED_ID.size() + " vanilla block types have been registered");
     }
 }
