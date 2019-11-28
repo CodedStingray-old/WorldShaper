@@ -36,6 +36,11 @@ public class BlockType {
     }
 
     public static BlockType register(String id) {
+        if(id.contains(":")) {
+            String[] split = id.split(":");
+            return register(split[0], split[1]);
+        }
+
         return register(NAMESPACE_MINECRAFT, id);
     }
 
@@ -43,5 +48,10 @@ public class BlockType {
         BlockType blockType = new BlockType(namespace, id);
         BY_NAMESPACED_ID.putIfAbsent(blockType.namespacedID, blockType);
         return blockType;
+    }
+
+    @Override
+    public String toString() {
+        return namespacedID;
     }
 }
