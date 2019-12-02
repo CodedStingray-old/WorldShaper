@@ -1,7 +1,5 @@
 package net.codedstingray.worldshaper.core.util.chat;
 
-import org.bukkit.ChatColor;
-
 import java.util.HashMap;
 import java.util.Map;
 
