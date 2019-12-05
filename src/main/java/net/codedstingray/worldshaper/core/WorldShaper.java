@@ -3,6 +3,8 @@ package net.codedstingray.worldshaper.core;
 import net.codedstingray.worldshaper.core.area.Area;
 import net.codedstingray.worldshaper.core.area.CuboidArea;
 import net.codedstingray.worldshaper.core.util.logging.Logger;
+import net.codedstingray.worldshaper.core.world.block.BlockTraits;
+import net.codedstingray.worldshaper.core.world.block.BlockTypes;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -28,6 +30,9 @@ public class WorldShaper {
         if(logger == null) {
             throw new IllegalStateException("Unable to initialize; no Logger provided");
         }
+
+        BlockTypes.init();
+        BlockTraits.init();
 
         pluginIntegration.initCommands();
     }
