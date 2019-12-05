@@ -60,17 +60,17 @@ public class BlockType {
         BY_NAMESPACED_ID.putIfAbsent(blockType.namespacedID, blockType);
     }
 
-    public static BlockType register(String id) {
+    public static BlockType register(String id, BlockTrait<?>... applicableTraits) {
         if(id.contains(":")) {
             String[] split = id.split(":");
-            return register(split[0], split[1]);
+            return register(split[0], split[1], applicableTraits);
         }
 
-        return register(NAMESPACE_MINECRAFT, id);
+        return register(NAMESPACE_MINECRAFT, id, applicableTraits);
     }
 
-    public static BlockType register(String namespace, String id) {
-        BlockType blockType = new BlockType(namespace, id);
+    public static BlockType register(String namespace, String id, BlockTrait<?>... applicableTraits) {
+        BlockType blockType = new BlockType(namespace, id, applicableTraits);
         BY_NAMESPACED_ID.putIfAbsent(blockType.namespacedID, blockType);
         return blockType;
     }
