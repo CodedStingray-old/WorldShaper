@@ -14,8 +14,6 @@ public class BlockState {
      */
     private BlockType blockType;
 
-    private Collection<BlockTrait<?>> applicableTraits;
-
     /**
      * All mapped traits with their current values
      */
@@ -35,7 +33,7 @@ public class BlockState {
     }
 
     public Collection<BlockTrait<?>> getApplicableTraits() {
-        return applicableTraits;
+        return blockType.getApplicableTraits();
     }
 
     @SuppressWarnings("unchecked")
