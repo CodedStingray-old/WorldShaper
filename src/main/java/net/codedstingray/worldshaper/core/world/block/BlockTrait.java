@@ -27,12 +27,29 @@ public class BlockTrait<T> {
         return key;
     }
 
-    public final Class<T> getType() {
+    public Class<T> getType() {
         return type;
     }
 
-    public final Collection<T> getPossibleValues() {
+    public Collection<T> getPossibleValues() {
         return possibleValues;
+    }
+
+    @SuppressWarnings("all")
+    public boolean allowsValue(Object value) {
+        return value != null && (possibleValues.contains(value) || possibleValues.isEmpty());
+    }
+
+    @SuppressWarnings("all")
+    public void checkValue(Object value) {
+        if(value == null || (!possibleValues.isEmpty() && !possibleValues.contains(value))) {
+            throw new IllegalArgumentException("\"" + value + "\" is not a possible value for trait[key=" + key + ",id=" + id + "]");
+        }
+    }
+
+    @Override
+    public String toString() {
+        return key;
     }
 
 
@@ -54,8 +71,32 @@ public class BlockTrait<T> {
         return trait;
     }
 
-    @Override
-    public String toString() {
-        return key;
+    public static Map.Entry<BlockTrait<?>, ?> parseTraitValuePair(BlockTrait<?> trait, String rawValue) {
+        Class<?> type = trait.getType();
+
+        Map.Entry<BlockTrait<?>, Object> entry = new AbstractMap.SimpleEntry<>(trait, null);
+
+        if(type == String.class) {
+            //String
+            trait.checkValue(rawValue);
+            entry.setValue(rawValue);
+        } else if(type == Integer.class) {
+            //Integer
+            try {
+                int i = Integer.parseInt(rawValue);
+                trait.checkValue(i);
+                entry.setValue(i);
+            } catch (NumberFormatException e) {
+                throw new IllegalArgumentException("\"" + rawValue + "\" cannot be parsed to Integer", e);
+            }
+        } else if (type == Boolean.class) {
+            //Boolean
+            boolean b = Boolean.parseBoolean(rawValue);
+            entry.setValue(b);
+        } else {
+            throw new IllegalArgumentException("Illegal argument for BlockTrait value; only allowed types are: String, Boolean, Integer");
+        }
+
+        return entry;
     }
 }
