@@ -48,28 +48,14 @@ public class CmdSet implements CommandExecutor {
         World world = Bukkit.getWorld(area.getWorldUUID());
 
         Pattern pattern = Pattern.parse(args[0]);
+        //TODO: handle exceptions
 
         //TODO: outsource this
         for(Vector3 position: area) {
             Block block = world.getBlockAt(position.getBlockX(), position.getBlockY(), position.getBlockZ());
-            block.setType(SpigotConverter.asMaterial(pattern.getBlockType()));
-        }
 
-
-        /*
-        //TODO: parse pattern
-        Material mat = Material.matchMaterial(args[0]);
-        if(mat == null) {
-            player.sendMessage(ChatColor.RED + "Unknown material: " + args[0]);
-            return false;
+            block.setBlockData(SpigotConverter.asBlockData(pattern.apply()));
         }
-
-        //TODO: outsource this
-        for(Vector3 position: area) {
-            Block block = world.getBlockAt(position.getBlockX(), position.getBlockY(), position.getBlockZ());
-            block.setType(mat);
-        }
-        */
 
         return true;
     }
